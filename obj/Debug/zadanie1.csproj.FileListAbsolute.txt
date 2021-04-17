@@ -1,0 +1,7 @@
+C:\Users\Carol\Desktop\pierdu\rekrutacyjne\zadanie1\bin\Debug\zadanie1.exe.config
+C:\Users\Carol\Desktop\pierdu\rekrutacyjne\zadanie1\bin\Debug\zadanie1.exe
+C:\Users\Carol\Desktop\pierdu\rekrutacyjne\zadanie1\bin\Debug\zadanie1.pdb
+C:\Users\Carol\Desktop\pierdu\rekrutacyjne\zadanie1\obj\Debug\zadanie1.csprojAssemblyReference.cache
+C:\Users\Carol\Desktop\pierdu\rekrutacyjne\zadanie1\obj\Debug\zadanie1.csproj.CoreCompileInputs.cache
+C:\Users\Carol\Desktop\pierdu\rekrutacyjne\zadanie1\obj\Debug\zadanie1.exe
+C:\Users\Carol\Desktop\pierdu\rekrutacyjne\zadanie1\obj\Debug\zadanie1.pdb
