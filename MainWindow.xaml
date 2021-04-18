@@ -1,0 +1,44 @@
+﻿<Window x:Class="zad2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:zad2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="#D1DFE6">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Background="#148FCC"
+              Grid.ColumnSpan="2" MouseDown="Grid_MouseDown">
+        </Grid>
+        <TextBlock Text="PORÓWNYWARKA CIĄGÓW ZNAKÓW" Foreground="SeaShell" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" />
+        <StackPanel Grid.Row="1">
+            <TextBlock HorizontalAlignment="Center" Text="Podaj pierwszy ciąg znaków: " Margin="30" FontSize="16"></TextBlock>
+            <TextBox x:Name="FirstTextBox" Margin="20" Padding="5" MaxLength="30"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Grid.Row="1">
+            <TextBlock HorizontalAlignment="Center" Text="Podaj drugi ciąg znaków: " Margin="30 " FontSize="16"></TextBlock>
+            <TextBox x:Name="SecondTextBox" Margin="20" Padding="5" MaxLength="30"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="2">
+            <TextBlock HorizontalAlignment="Center" Text="Czym różnią się podane przez Ciebie ciągi znaków?" Margin="10 " FontSize="16" TextWrapping="wrap"></TextBlock>
+            <Button Cursor="Hand" Content="SPRAWDŹ" Foreground="SeaShell" Width="100" Height="40" Margin="10" Background="#148FCC" Click="Button_Click"/>
+            <Button Cursor="Hand" Content="WYCZYŚĆ" Foreground="SeaShell" Width="100" Height="40" Margin="10" Background="red" Click="Button_Click_DELETE"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <TextBlock Text="Twoja odpowiedź: " HorizontalAlignment="Center" Margin="10 " FontSize="16" TextWrapping="wrap" />
+            <Label x:Name="AnswerTextLabel" Content="" />
+        </StackPanel>
+    </Grid>
+</Window>

@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace zadanie1
+namespace zad2
 {
     
     class WordsComparer
     {
-        struct Comparison
+        public struct Comparison
         {
             public bool wordsHaveSameLengths;
             public bool wordsHaveSameCountsOfVovels;
@@ -24,7 +24,11 @@ namespace zadanie1
         private string firstWord;
         private string secondWord;
         private Comparison comparison;
-
+        
+        public Comparison ComparisonBetweenWords
+        {
+            get { return comparison; }
+        }
         public WordsComparer(string string1, string string2) {
             firstWord = string1;
             secondWord = string2;
@@ -139,50 +143,48 @@ namespace zadanie1
                 wordsContainSameLettersIfOrderIsNotImportant = checkIfWordsContainSameLettersIfOrderIsNotImportant(),
                 wordsHaveSameLowercasesCount = lowercasesCount(firstWord) == lowercasesCount(secondWord),
                 wordsHaveSameUppercasesCount = uppercasesCount(firstWord) == uppercasesCount(secondWord),
-                wordsHaveSameOrderOfUppercases = checkIfWordsHaveSameOrderOfUppercases(firstWord, secondWord),
-                wordsHaveSameOrderOfLowercases = checkIfWordsHaveSameOrderOfLowercases(firstWord, secondWord),
+                wordsHaveSameOrderOfUppercases = false,
+                wordsHaveSameOrderOfLowercases = false,
         };
             return c;
         }
 
-        public void writeDifferencesBetweenWords()
+        public string describeDifferencesBetweenWords()
         {
-            Console.WriteLine("Dla slow " + firstWord + " oraz " + secondWord + "roznice to: ");
-            if (!comparison.wordsHaveSameLengths)
-            {
-                Console.WriteLine("długość ciągu znaków");
-            }
-            if (!comparison.wordsHaveSameCountsOfVovels)
-            {
-                Console.WriteLine("ilość zawartych samogłosek");
-            }
-            if (!comparison.wordsContainSameLettersIfOrderIsImportant && comparison.wordsContainSameLettersIfOrderIsNotImportant) 
-                Console.WriteLine("kolejnością znaków (są anagramami)");
-            if (!comparison.wordsContainSameLettersIfOrderIsImportant && !comparison.wordsContainSameLettersIfOrderIsNotImportant) 
-                Console.WriteLine("zawierają różne litery");
-            if (!comparison.wordsHaveSameLowercasesCount)
-            {
-                Console.WriteLine("zawierają różną ilość małych liter");
+            string descriptionOfDifferencedBetweenWords = "Dla słów " + firstWord + " oraz " + secondWord + " różnice to: \n";
+            if (firstWord.Equals(secondWord))
+            {                
+                if(firstWord == "") descriptionOfDifferencedBetweenWords = "Podane ciągi znaków są identyczne, ale puste";
+                else descriptionOfDifferencedBetweenWords = "Podane ciągi znaków są identyczne";
             }
             else
             {
-                if ((uppercasesCount(firstWord) > 0) && (uppercasesCount(secondWord) > 0))
+                if (!comparison.wordsHaveSameLengths) descriptionOfDifferencedBetweenWords += "długość ciągu znaków\n";
+                if (!comparison.wordsHaveSameCountsOfVovels) descriptionOfDifferencedBetweenWords += "liczba zawartych samogłosek\n";
+                if (!comparison.wordsContainSameLettersIfOrderIsImportant && comparison.wordsContainSameLettersIfOrderIsNotImportant)
+                    descriptionOfDifferencedBetweenWords += "kolejnością znaków (są anagramami)\n";
+                if (!comparison.wordsContainSameLettersIfOrderIsImportant && !comparison.wordsContainSameLettersIfOrderIsNotImportant)
+                    descriptionOfDifferencedBetweenWords += "zawierają różne litery\n";
+                if (!comparison.wordsHaveSameLowercasesCount) descriptionOfDifferencedBetweenWords += "liczba małych liter\n";
+                else
                 {
-                    if (!comparison.wordsHaveSameOrderOfUppercases) Console.WriteLine("mają różnie rozmieszczone wielkie litery");
+                    if ((uppercasesCount(firstWord) > 0) && (uppercasesCount(secondWord) > 0) && comparison.wordsHaveSameLengths)
+                    {
+                        comparison.wordsHaveSameOrderOfUppercases = checkIfWordsHaveSameOrderOfUppercases(firstWord, secondWord);
+                        if (!comparison.wordsHaveSameOrderOfUppercases) descriptionOfDifferencedBetweenWords += "mają różnie rozmieszczone wielkie litery\n";
+                    }
+                }
+                if (!comparison.wordsHaveSameUppercasesCount) descriptionOfDifferencedBetweenWords += "liczba wielkich liter\n";
+                else
+                {
+                    if ((lowercasesCount(firstWord) > 0) && (lowercasesCount(secondWord) > 0) && comparison.wordsHaveSameLengths)
+                    {
+                        comparison.wordsHaveSameOrderOfLowercases = checkIfWordsHaveSameOrderOfLowercases(firstWord, secondWord);
+                        if (!comparison.wordsHaveSameOrderOfLowercases) descriptionOfDifferencedBetweenWords += "mają różnie rozmieszczone małe litery\n";
+                    }
                 }
             }
-            if (!comparison.wordsHaveSameUppercasesCount)
-            {
-                Console.WriteLine("zawierają różną ilość wielkich liter");
-            }
-            else
-            {
-                if ((lowercasesCount(firstWord) > 0) && (lowercasesCount(secondWord) > 0))
-                {
-                    if (!comparison.wordsHaveSameOrderOfLowercases) Console.WriteLine("mają różnie rozmieszczone małe litery");
-                }
-            }
-            
+            return descriptionOfDifferencedBetweenWords;
         }
     }
 }
